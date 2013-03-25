@@ -13,7 +13,7 @@ begin
   #Create second thread for second for timer and announcements
   Thread.new do
     log "@"*5 + "Start second tread"
-    sleep 600
+    sleep 60
     http = Net::HTTP.new("api.tropo.com")
     request = Net::HTTP::Get.new("/1.0/sessions/#{$currentCall.sessionId}/signals?action=signal&value=limitreached")
     response = http.request(request)
@@ -59,7 +59,7 @@ begin
 
       transfer phone, { :allowsignals => "limitreached", :answerOnMedia => true, :playvalue => "http://hosting.tropo.com/13539/www/audio/ring.wav", :callerID => '4151234567'}
 
-      # say "your limit has been reached."
+      say "your limit has been reached."
     else
       say "calls to this area code are blocked."
     end
@@ -79,7 +79,7 @@ begin
     log '@@@' + sip + '@@@'
 
     transfer 'sip:' + sip, { :allowsignals => "limitreached", :answerOnMedia => true, :playvalue => "http://hosting.tropo.com/13539/www/audio/ring.wav", :callerID => '4151234567'}
-
+    say "your limit has been reached."
 
   end
   
